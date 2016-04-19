@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+      html, body, #map {height: 100%; padding: 0; margin: 0;}
+    </style>
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://mapzen.com/tangram/0.4/tangram.min.js"></script>
+
+  </head>
+  <body>
+      <div id="map"></div>
+
+    <script>
+
+      $(document).ready(function(){
+
+        // cartodb.createVis('map', 'viz.json', null, function(vis, layers) {
+        cartodb.createVis('map', 'https://team.cartodb.com/u/mamataakella/api/v2/viz/fdbcdcba-bd4f-11e5-b5f0-0e674067d321/viz.json', null, function(vis, layers) {
+          vis.on('load', function() {})
+
+          //Add Tangram basemap layer
+          var layer = Tangram.leafletLayer({
+              scene: 'scene.yaml',
+              attribution: ' &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>'
+          });
+          layer.addTo(vis.getNativeMap());
+
+        });
+      });
+
+    </script>
+
+  </body>
+</html>
