@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+      html, body, #map {height: 100%; padding: 0; margin: 0;}
+    </style>
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://mapzen.com/tangram/0.4/tangram.min.js"></script>
+
+  </head>
+  <body>
+      <div id="map"></div>
+
+    <script>
+
+      $(document).ready(function(){
+
+        cartodb.createVis('map', 'https://team.cartodb.com/u/nerikcarto/api/v2/viz/f52d4d1a-0646-11e6-824c-0e3ff518bd15/viz.json', null, function(vis, layers) {
+          vis.on('load', function() {})
+
+
+
+          //Add Tangram basemap layer
+          var tangram = Tangram.leafletLayer({
+              scene: 'scene.yaml',
+              attribution: ' &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>'
+          });
+          tangram.addTo(vis.getNativeMap());
+
+          var torque = layers[1];
+          torque.on('change:time', function() {
+            var step = torque.getStep();
+            console.log(step)
+            console.log(step%5)
+
+            if (step%2 === 0) {
+              var v = 1-(step/50);
+              tangram.scene.config.layers.water.draw.polygons.color = [1,v,v];
+              tangram.scene.rebuildGeometry();
+            }
+          })
+        });
+      });
+
+    </script>
+
+  </body>
+</html>

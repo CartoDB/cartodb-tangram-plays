@@ -1,0 +1,98 @@
+scene:
+    background:
+        color: [0.850, 0.850, 0.850]
+
+cameras:
+    perspective:
+        type: perspective
+        vanishing_point: [0, -500]
+
+lights:
+    light1:
+        type: directional
+        direction: [.1, .5, -1]
+        diffuse: .7
+        ambient: .5
+
+styles:
+    buildings:
+        base: polygons
+        shaders:
+            blocks:
+                color: |
+                    color.rgb *= vec3(min((worldPosition().z*.001 + .5),1.));
+
+sources:
+    mapzen:
+        type: TopoJSON
+        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+
+layers:
+    earth:
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 0
+                color: '#555'
+
+    water:
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 2
+                color: [0.022, 0.298, 0.930]
+
+    landuse:
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 1
+                color: '#666'
+
+    roads:
+        data: { source: mapzen }
+        filter: { not: { kind: ferry } }
+        draw:
+            lines:
+                order: 2
+                color: '#777'
+                width: 5
+
+        labels:
+            filter:
+                name: true
+                aeroway: false
+                tunnel: false
+                railway: false
+                not: { kind: rail }
+
+            draw:
+                text:
+                    font:
+                        fill: white
+                        family: Helvetica
+                        size: 11px
+
+            highway:
+                filter: { kind: highway }
+                draw:
+                    text:
+                        font:
+                            size: 12px
+                            weight: bold
+
+    buildings:
+        data: { source: mapzen }
+        filter: { $zoom: { min: 14 } }
+        draw:
+            polygons:
+                order: 50
+                color: '#4d4d4d'
+
+        extruded:
+            filter: { $zoom: { min: 15 } }
+            draw:
+                polygons:
+                    style: buildings
+                    color: '#999'
+                    extrude: function () { return feature.height > 0 || $zoom >= 16; }
