@@ -1,0 +1,102 @@
+vizjson({
+  "id": "56f6b6d6-cf5c-11e3-9a1b-0e230854a1cb",
+  "version": "0.1.0",
+  "title": "Sunrise around the world",
+  "likes": 0,
+  "description": "<p>Geotagged Tweets mentioning &#39;sunrise&#39; in different languages, April 6, 2014, GMT</p>\n",
+  "scrollwheel": true,
+  "legends": true,
+  "url": null,
+  "map_provider": "leaflet",
+  "bounds": [
+    [-75.49715731893085, -194.0625],
+    [85.83159098927689, 209.53125]
+  ],
+  "center": "[33.7243396617476, 7.734374999999999]",
+  "zoom": 1,
+  "updated_at": "2014-06-28T16:41:54+00:00",
+  "layers": [{
+    "type": "namedmap",
+    "order": 1,
+    "options": {
+      "type": "namedmap",
+      "user_name": "srogers22",
+      "maps_api_template": "http://{user}.cartodb.com:80",
+      "sql_api_template": "http://{user}.cartodb.com:80",
+      "tiler_protocol": "http",
+      "tiler_domain": "cartodb.com",
+      "tiler_port": "80",
+      "filter": "mapnik",
+      "named_map": {
+        "name": "tpl_56f6b6d6_cf5c_11e3_9a1b_0e230854a1cb",
+        "stat_tag": "56f6b6d6-cf5c-11e3-9a1b-0e230854a1cb",
+        "params": {
+          "layer0": 1
+        },
+        "layers": [{
+          "id": "96dada22-bcd0-41ee-a463-f70feb55be7f",
+          "layer_name": "ne_10m_admin_0_countries",
+          "interactivity": "cartodb_id",
+          "visible": false
+        }]
+      },
+      "attribution": ""
+    }
+  }, {
+    "id": "6163eab9-d76f-47e1-a824-98f81f1ad75b",
+    "type": "torque",
+    "order": 102,
+    "legend": {
+      "type": "none",
+      "show_title": false,
+      "title": "",
+      "template": ""
+    },
+    "options": {
+      "stat_tag": "56f6b6d6-cf5c-11e3-9a1b-0e230854a1cb",
+      "maps_api_template": "http://{user}.cartodb.com:80",
+      "sql_api_template": "http://{user}.cartodb.com:80",
+      "tiler_protocol": "http",
+      "tiler_domain": "cartodb.com",
+      "tiler_port": "80",
+      "sql_api_protocol": "http",
+      "sql_api_domain": "cartodb.com",
+      "sql_api_endpoint": "/api/v2/sql",
+      "sql_api_port": 80,
+      "layer_name": "sunrise",
+      "visible": true,
+      "table_name": "sunrise",
+      "user_name": "srogers",
+      "tile_style": "/** torque visualization */\n\nMap {\n-torque-frame-count:512;\n-torque-animation-duration:30;\n-torque-time-attribute:\"gmt\";\n-torque-aggregation-function:\"count(cartodb_id)\";\n-torque-resolution:2;\n-torque-data-aggregation:linear;\n}\n\n#sunrise{\n  comp-op: lighter;\n  marker-opacity: 1;\n  marker-line-color: #FFF;\n  marker-line-width: 0.1;\n  marker-line-opacity: 1;\n  marker-type: ellipse;\n  marker-width: 8;\n  marker-fill: #FFCC00;\n}\n#sunrise[frame-offset=1] {\n marker-width:10;\n marker-opacity:0.5; \n}\n#sunrise[frame-offset=2] {\n marker-width:12;\n marker-opacity:0.25; \n}\n#sunrise[frame-offset=3] {\n marker-width:14;\n marker-opacity:0.16666666666666666; \n}\n#sunrise[frame-offset=4] {\n marker-width:16;\n marker-opacity:0.125; \n}\n#sunrise[frame-offset=5] {\n marker-width:18;\n marker-opacity:0.1; \n}\n#sunrise[frame-offset=6] {\n marker-width:20;\n marker-opacity:0.08333333333333333; \n}\n#sunrise[frame-offset=7] {\n marker-width:22;\n marker-opacity:0.07142857142857142; \n}\n#sunrise[frame-offset=8] {\n marker-width:24;\n marker-opacity:0.0625; \n}",
+      "named_map": {
+        "name": "tpl_56f6b6d6_cf5c_11e3_9a1b_0e230854a1cb",
+        "layer_index": 1,
+        "params": {
+          "layer0": 1
+        }
+      }
+    }
+  }],
+  "overlays": [{
+    "type": "zoom",
+    "order": 6,
+    "options": {
+      "display": true,
+      "x": 20,
+      "y": 20
+    },
+    "template": "<a href=\"#zoom_in\" class=\"zoom_in\">+</a> <a href=\"#zoom_out\" class=\"zoom_out\">-</a>"
+  }, {
+    "type": "loader",
+    "order": 8,
+    "options": {
+      "display": true,
+      "x": 20,
+      "y": 150
+    },
+    "template": "<div class=\"loader\" original-title=\"\"></div>"
+  }],
+  "prev": null,
+  "next": null,
+  "transition_options": {}
+})
