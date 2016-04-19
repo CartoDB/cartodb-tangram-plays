@@ -22,15 +22,38 @@
           vis.on('load', function() {})
 
           //Add Tangram basemap layer
-          var layer = Tangram.leafletLayer({
+          var tangram = Tangram.leafletLayer({
                scene: 'scene.yaml',
               //scene: 'https://rawgit.com/tangrams/tangram-sandbox/gh-pages/styles/lego.yaml',
               attribution: ' &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>'
           });
-          layer.addTo(vis.getNativeMap());
+          tangram.addTo(vis.getNativeMap());
 
+          cartodb.$('#map').on('click', function() {
+            console.log('rebuild');
+            console.log(tangram.scene.config.layers['ocean-water'].draw.polygons.color)
+            tangram.scene.config.layers['ocean-water'].draw.polygons.color = 'blue'
+            tangram.scene.rebuildGeometry();
+          })
+
+          // console.log(tangram)
+          // console.log(tangram.scene)
+          // console.log(tangram.scene.updateConfig)
+          //
+          // tangram.scene.subscribe({
+          //    load: function (args) {
+          //      console.log('lala')
+          //      console.log(tangram.scene.config['zinc-light-gray-colors'].areas[1]);
+          //      tangram.scene.config['zinc-light-gray-colors'].areas[1] = '#f0f';
+          //      tangram.scene.rebuildGeometry();
+          //     //  tangram.scene.load(tangram.scene.config_path, false);
+          //    }
+          //  })
         });
       });
+
+
+
 
     </script>
 
