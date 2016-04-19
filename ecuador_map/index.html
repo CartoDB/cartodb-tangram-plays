@@ -24,17 +24,16 @@
           //Add Tangram basemap layer
           var tangram = Tangram.leafletLayer({
                scene: 'scene.yaml',
-              //scene: 'https://rawgit.com/tangrams/tangram-sandbox/gh-pages/styles/lego.yaml',
               attribution: ' &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>'
           });
           tangram.addTo(vis.getNativeMap());
 
-          cartodb.$('#map').on('click', function() {
-            console.log('rebuild');
-            console.log(tangram.scene.config.layers['ocean-water'].draw.polygons.color)
-            tangram.scene.config.layers['ocean-water'].draw.polygons.color = 'blue'
-            tangram.scene.rebuildGeometry();
-          })
+          // cartodb.$('#map').on('click', function() {
+          //   console.log('rebuild');
+          //   console.log(tangram.scene.config.layers['ocean-water'].draw.polygons.color)
+          //   tangram.scene.config.layers['ocean-water'].draw.polygons.color = 'blue'
+          //   tangram.scene.rebuildGeometry();
+          // })
 
           // console.log(tangram)
           // console.log(tangram.scene)
