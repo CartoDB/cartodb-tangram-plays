@@ -59,7 +59,7 @@
       <!-- <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script> -->
 
           <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
-          <script src="https://mapzen.com/tangram/0.4/tangram.min.js"></script>
+          <script src="https://mapzen.com/tangram/0.7/tangram.min.js"></script>
           
       <!-- inline statsc -->
       <script type="text/javascript">(function(){function n(e){return new Date-e}var e={},t="http://localhost:8127/";e.connect=function(e){t=e},e.increment=function(t,n){e.send(["i",t,n])},e.decrement=function(t,n){e.send(["d",t,n])},e.gauge=function(t,n,r){e.send(["g",t,n,r])},e.timing=function(t,r,i){if("number"==typeof r)return e.send(["t",t,r,i]);if(r instanceof Date)return e.send(["t",t,n(r),i]);if("function"==typeof r){var s=new Date;r(),e.send(["t",t,n(s),i])}},e.timer=function(t,r){var i=(new Date).getTime();return function(){e.send(["t",t,n(i),r])}},e.send=function(){var e=[],n=document.getElementsByTagName("head")[0];return setInterval(function(){if(e.length>0){for(var r=0;r<e.length;r++)for(var i=0;i<e[r].length;i++)e[r][i]==null&&e[r].splice(i,1);var s=document.createElement("script");s.src=t+JSON.stringify(e),s.onload=function(){n.removeChild(s)},n.appendChild(s),e=[]}},5e3),function(t){e.push(t)}}(),typeof require=="function"&&typeof module!="undefined"&&(module.exports=e),typeof window=="object"&&(window.statsc=e)})();</script>
