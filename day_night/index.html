@@ -4,10 +4,12 @@
   <head>
     <style type="text/css">
       html, body, #map {height: 100%; padding: 0; margin: 0;}
+      .time .value {visibility: hidden; display: none}
     </style>
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
     <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
     <script src="https://mapzen.com/tangram/0.7/tangram.min.js"></script>
+    <script src="moment.min.js"></script>
     <script src="av.color.js"></script>
 
   </head>
@@ -37,8 +39,8 @@
       })
 
       var numSteps = 2159;
-      var dayStart = 20;
-      var dayEnd = 600;
+      var dayStart = 250;
+      var dayEnd = 350;
       var nightStart = 1300;
       var nightEnd = 1700;
 
@@ -60,8 +62,6 @@
             var v = getDayNightValue();
 
             render(v)
-
-
           }
 
           function getDayNightValue() {
@@ -85,6 +85,8 @@
 
             tangram.scene.animated = true;
 
+            // tangram.scene.requestRedraw();
+            // tangram.scene.updateConfig({ rebuild: true });
             tangram.scene.rebuildGeometry();
           }
 
@@ -99,12 +101,14 @@
 
           var torque = layers[1];
 
+          torque.setStep(200)
 
+          console.log(layers)
+          var htmlTime = cartodb.$('<p class="value2"></p>').appendTo('li.time');
 
 
           torque.on('change:time', function() {
-
-
+            htmlTime.html(moment(torque.getTime()).format('LT'))
             // console.log(v)
 
             // if (step%5 === 0) {

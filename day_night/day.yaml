@@ -50,25 +50,27 @@ layers:
                 color: '#eee'
                 width: 1px
 
-        labels:
-            filter:
-                name: true
-                aeroway: false
-                tunnel: false
-                railway: false
-                not: { kind: rail }
-
+    populated-places:
+        data: { source: mapzen, layer: places }
+        filter: { name: true, source: naturalearthdata.com, scalerank: { min: 0, max: 15 } }
+        draw:
+            text:
+               text_source: function() { return feature["name:en"] || feature["name"]; }
+               font:
+                    family: Tahoma
+                    weight: 100
+                    fill: '#000'
+                    stroke: { color: [1,1,1,.8], width: 4 }
+                    size: 14px
+        maincities:
+            filter: { scalerank: { min: 0, max: 5 } }
             draw:
                 text:
                     font:
-                        fill: white
-                        family: Helvetica
-                        size: 11px
-
-            highway:
-                filter: { kind: highway }
-                draw:
-                    text:
-                        font:
-                            size: 12px
-                            weight: bold
+                        size: 20px
+        mediumcities:
+            filter: { scalerank: { min: 5, max: 7 } }
+            draw:
+                text:
+                    font:
+                        size: 17px

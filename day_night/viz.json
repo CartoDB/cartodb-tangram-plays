@@ -22,7 +22,7 @@ vizjson({
   "zoom": 9,
   "updated_at": "2016-04-19T22:41:33+00:00",
   "layers": [
-  
+
     {
       "type": "layergroup",
       "options": {
@@ -59,36 +59,13 @@ vizjson({
                 "alternative_names": {},
                 "maxHeight": 180
               },
-              "legend": {
-                "type": "category",
-                "show_title": false,
-                "title": "",
-                "template": "",
-                "visible": true,
-                "items": [
-                  {
-                    "name": 0,
-                    "visible": true,
-                    "value": "#A6CEE3"
-                  },
-                  {
-                    "name": 2,
-                    "visible": true,
-                    "value": "#1F78B4"
-                  },
-                  {
-                    "name": 3,
-                    "visible": true,
-                    "value": "#B2DF8A"
-                  }
-                ]
-              },
+
               "order": 1,
               "visible": true,
               "options": {
                 "sql": "select * from raill_jpn",
                 "layer_name": "raill_jpn",
-                "cartocss": "/** category visualization */\n\n#raill_jpn {\n   line-width: 2;\n   line-opacity: 0.7;\n}\n\n#raill_jpn[fco=0] {\n   line-color: #A6CEE3;\n}\n#raill_jpn[fco=2] {\n   line-color: #1F78B4;\n}\n#raill_jpn[fco=3] {\n   line-color: #B2DF8A;\n}",
+                "cartocss": "/** category visualization */\n\n#raill_jpn {\n   line-width: 2;\n   line-opacity: 0.7;\n}\n\n#raill_jpn[fco=0] {\n   line-color: #A6CEE3;\n}\n#raill_jpn[fco=2] {\n   line-color: #cdadff;\n}\n#raill_jpn[fco=3] {\n   line-color: #fea679;\n}",
                 "cartocss_version": "2.1.1",
                 "interactivity": "cartodb_id",
                 "table_name": "\"\"."
@@ -126,30 +103,8 @@ vizjson({
         "visible": true,
         "table_name": "raill_jpn_copy_1",
         "user_name": "stuartlynn",
-        "tile_style": "/** torque_cat visualization */\n\nMap {\n-torque-frame-count:2160;\n-torque-animation-duration:240;\n-torque-time-attribute:\"dt\";\n-torque-aggregation-function:\"CDB_Math_Mode(torque_category)\";\n-torque-resolution:2;\n-torque-data-aggregation:linear;\n}\n\n#raill_jpn_copy{\n  comp-op: source-over;\n  marker-fill-opacity: 0.9;\n  marker-line-color: #FFF;\n  marker-line-width: 0;\n  marker-line-opacity: 1;\n  marker-type: ellipse;\n  marker-width: 2;\n}\n\n#raill_jpn_copy[value=1] {\n   marker-fill: #ffcc00;\n}\n#raill_jpn_copy[value=2] {\n   marker-fill: #1F78B4;\n}\n#raill_jpn_copy[value=3] {\n   marker-fill: #B2DF8A;\n}\n\n  #scge_migration::point{\n    comp-op: source-over;\n    marker-fill-opacity: 0.05;\n    marker-line-color: #FFF;\n    marker-line-width: 1;\n    marker-line-opacity: 0;\n    marker-type: ellipse;\n    marker-width: 15;\n    [value=1] {\n\t\tmarker-fill: #ffcc00;\n    }\n    [value=2] {\n        marker-fill: #1F78B4;\n    }\n    [value=3] {\n     \tmarker-fill: #B2DF8A;\n    }\n  }"
+        "tile_style": "/** torque_cat visualization */\n\nMap {\n-torque-frame-count:2160;\n-torque-animation-duration:240;\n-torque-time-attribute:\"dt\";\n-torque-aggregation-function:\"CDB_Math_Mode(torque_category)\";\n-torque-resolution:2;\n-torque-data-aggregation:linear;\n}\n\n#raill_jpn_copy{\n  comp-op: source-over;\n  marker-fill-opacity: 0.9;\n  marker-line-color: #FFF;\n  marker-line-width: 0;\n  marker-line-opacity: 1;\n  marker-type: ellipse;\n  marker-width: 2;\n}\n\n#raill_jpn_copy[value=1] {\n   marker-fill: #ffcc00;\n}\n#raill_jpn_copy[value=2] {\n   marker-fill: #cdadff;\n}\n#raill_jpn_copy[value=3] {\n   marker-fill: #fea679;\n}\n\n  #scge_migration::point{\n    comp-op: source-over;\n    marker-fill-opacity: 0.05;\n    marker-line-color: #FFF;\n    marker-line-width: 1;\n    marker-line-opacity: 0;\n    marker-type: ellipse;\n    marker-width: 15;\n    [value=1] {\n\t\tmarker-fill: #ffcc00;\n    }\n    [value=2] {\n        marker-fill: #cdadff;\n    }\n    [value=3] {\n     \tmarker-fill: #fea679;\n    }\n  }"
       }
-    },
-    {
-      "options": {
-        "visible": true,
-        "type": "Tiled",
-        "default": "true",
-        "url": "http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
-        "subdomains": "abcd",
-        "minZoom": "0",
-        "maxZoom": "18",
-        "attribution": "&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"http://cartodb.com/attributions\">CartoDB</a>",
-        "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png",
-        "name": "Dark matter Labels",
-        "id": "79a086ee-3828-4a50-8bb7-672f4e518069",
-        "className": "httpsbasemapscartocdncomdark_only_labelszxypng",
-        "order": 3
-      },
-      "infowindow": null,
-      "tooltip": null,
-      "id": "79a086ee-3828-4a50-8bb7-672f4e518069",
-      "order": 3,
-      "type": "tiled"
     }
   ],
   "overlays": [
