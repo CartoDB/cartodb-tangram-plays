@@ -25,21 +25,21 @@ layers:
         draw:
             polygons:
                 order: 0
-                color: '#555'
+                color: '#ccc'
 
     water:
         data: { source: mapzen }
         draw:
             polygons:
                 order: 2
-                color: '#0B1A2D'
+                color: '#97CEFF'
 
     landuse:
         data: { source: mapzen }
         draw:
             polygons:
                 order: 1
-                color: '#666'
+                color: '#ddd'
 
     roads:
         data: { source: mapzen }
@@ -47,7 +47,7 @@ layers:
         draw:
             lines:
                 order: 2
-                color: '#777'
+                color: '#eee'
                 width: 1px
 
         labels:

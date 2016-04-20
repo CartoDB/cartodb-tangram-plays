@@ -1,0 +1,212 @@
+vizjson({
+  "id": "7a6be9e0-067f-11e6-b708-0e787de82d45",
+  "version": "0.1.0",
+  "title": "raill_jpn_copy_1",
+  "likes": 0,
+  "description": null,
+  "scrollwheel": false,
+  "legends": true,
+  "url": null,
+  "map_provider": "leaflet",
+  "bounds": [
+    [
+      34.804782919572425,
+      135.49713134765625
+    ],
+    [
+      36.20439070158873,
+      138.75457763671875
+    ]
+  ],
+  "center": "[35.507635947037855, 137.1258544921875]",
+  "zoom": 9,
+  "updated_at": "2016-04-19T22:41:33+00:00",
+  "layers": [
+  
+    {
+      "type": "layergroup",
+      "options": {
+        "user_name": "stuartlynn",
+        "maps_api_template": "https://{user}.cartodb.com:443",
+        "sql_api_template": "https://{user}.cartodb.com:443",
+        "tiler_protocol": "http",
+        "tiler_domain": "cartodb.com",
+        "tiler_port": "80",
+        "sql_api_protocol": "http",
+        "sql_api_domain": "cartodb.com",
+        "sql_api_endpoint": "/api/v2/sql",
+        "sql_api_port": 80,
+        "filter": "mapnik",
+        "layer_definition": {
+          "stat_tag": "7a6be9e0-067f-11e6-b708-0e787de82d45",
+          "version": "1.0.1",
+          "layers": [
+            {
+              "id": "f50ffea9-9798-47dc-be5a-a6037b85c87b",
+              "type": "CartoDB",
+              "infowindow": {
+                "fields": null,
+                "template_name": "infowindow_light",
+                "template": "<div class=\"cartodb-popup v2\">\n  <a href=\"#close\" class=\"cartodb-popup-close-button close\">x</a>\n  <div class=\"cartodb-popup-content-wrapper\">\n    <div class=\"cartodb-popup-content\">\n      {{#content.fields}}\n        {{#title}}<h4>{{title}}</h4>{{/title}}\n        {{#value}}\n          <p {{#type}}class=\"{{ type }}\"{{/type}}>{{{ value }}}</p>\n        {{/value}}\n        {{^value}}\n          <p class=\"empty\">null</p>\n        {{/value}}\n      {{/content.fields}}\n    </div>\n  </div>\n  <div class=\"cartodb-popup-tip-container\"></div>\n</div>\n",
+                "alternative_names": {},
+                "width": 226,
+                "maxHeight": 180
+              },
+              "tooltip": {
+                "fields": [],
+                "template_name": "tooltip_light",
+                "template": "<div class=\"cartodb-tooltip-content-wrapper\">\n  <div class=\"cartodb-tooltip-content\">\n  {{#fields}}\n    {{#title}}\n    <h4>{{title}}</h4>\n    {{/title}}\n    <p>{{{ value }}}</p>\n  {{/fields}}\n  </div>\n</div>",
+                "alternative_names": {},
+                "maxHeight": 180
+              },
+              "legend": {
+                "type": "category",
+                "show_title": false,
+                "title": "",
+                "template": "",
+                "visible": true,
+                "items": [
+                  {
+                    "name": 0,
+                    "visible": true,
+                    "value": "#A6CEE3"
+                  },
+                  {
+                    "name": 2,
+                    "visible": true,
+                    "value": "#1F78B4"
+                  },
+                  {
+                    "name": 3,
+                    "visible": true,
+                    "value": "#B2DF8A"
+                  }
+                ]
+              },
+              "order": 1,
+              "visible": true,
+              "options": {
+                "sql": "select * from raill_jpn",
+                "layer_name": "raill_jpn",
+                "cartocss": "/** category visualization */\n\n#raill_jpn {\n   line-width: 2;\n   line-opacity: 0.7;\n}\n\n#raill_jpn[fco=0] {\n   line-color: #A6CEE3;\n}\n#raill_jpn[fco=2] {\n   line-color: #1F78B4;\n}\n#raill_jpn[fco=3] {\n   line-color: #B2DF8A;\n}",
+                "cartocss_version": "2.1.1",
+                "interactivity": "cartodb_id",
+                "table_name": "\"\"."
+              }
+            }
+          ]
+        },
+        "attribution": ""
+      }
+    },
+    {
+      "id": "475d518a-26ef-40ea-9e6f-18ded6c593cd",
+      "type": "torque",
+      "order": 2,
+      "legend": {
+        "type": "none",
+        "show_title": false,
+        "title": "",
+        "template": "",
+        "visible": true
+      },
+      "options": {
+        "stat_tag": "7a6be9e0-067f-11e6-b708-0e787de82d45",
+        "maps_api_template": "https://{user}.cartodb.com:443",
+        "sql_api_template": "https://{user}.cartodb.com:443",
+        "tiler_protocol": "http",
+        "tiler_domain": "cartodb.com",
+        "tiler_port": "80",
+        "sql_api_protocol": "http",
+        "sql_api_domain": "cartodb.com",
+        "sql_api_endpoint": "/api/v2/sql",
+        "sql_api_port": 80,
+        "layer_name": "raill_jpn_copy_1",
+        "query": "select *, (CASE WHEN \"fco\" = 0 THEN 1 WHEN \"fco\" = 2 THEN 2 WHEN \"fco\" = 3 THEN 3 ELSE 4 END) as torque_category FROM (SELECT * FROM stuartlynn.raill_jpn_copy_1\n) _cdb_wrap",
+        "visible": true,
+        "table_name": "raill_jpn_copy_1",
+        "user_name": "stuartlynn",
+        "tile_style": "/** torque_cat visualization */\n\nMap {\n-torque-frame-count:2160;\n-torque-animation-duration:240;\n-torque-time-attribute:\"dt\";\n-torque-aggregation-function:\"CDB_Math_Mode(torque_category)\";\n-torque-resolution:2;\n-torque-data-aggregation:linear;\n}\n\n#raill_jpn_copy{\n  comp-op: source-over;\n  marker-fill-opacity: 0.9;\n  marker-line-color: #FFF;\n  marker-line-width: 0;\n  marker-line-opacity: 1;\n  marker-type: ellipse;\n  marker-width: 2;\n}\n\n#raill_jpn_copy[value=1] {\n   marker-fill: #ffcc00;\n}\n#raill_jpn_copy[value=2] {\n   marker-fill: #1F78B4;\n}\n#raill_jpn_copy[value=3] {\n   marker-fill: #B2DF8A;\n}\n\n  #scge_migration::point{\n    comp-op: source-over;\n    marker-fill-opacity: 0.05;\n    marker-line-color: #FFF;\n    marker-line-width: 1;\n    marker-line-opacity: 0;\n    marker-type: ellipse;\n    marker-width: 15;\n    [value=1] {\n\t\tmarker-fill: #ffcc00;\n    }\n    [value=2] {\n        marker-fill: #1F78B4;\n    }\n    [value=3] {\n     \tmarker-fill: #B2DF8A;\n    }\n  }"
+      }
+    },
+    {
+      "options": {
+        "visible": true,
+        "type": "Tiled",
+        "default": "true",
+        "url": "http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
+        "subdomains": "abcd",
+        "minZoom": "0",
+        "maxZoom": "18",
+        "attribution": "&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"http://cartodb.com/attributions\">CartoDB</a>",
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png",
+        "name": "Dark matter Labels",
+        "id": "79a086ee-3828-4a50-8bb7-672f4e518069",
+        "className": "httpsbasemapscartocdncomdark_only_labelszxypng",
+        "order": 3
+      },
+      "infowindow": null,
+      "tooltip": null,
+      "id": "79a086ee-3828-4a50-8bb7-672f4e518069",
+      "order": 3,
+      "type": "tiled"
+    }
+  ],
+  "overlays": [
+    {
+      "type": "share",
+      "order": 2,
+      "options": {
+        "display": true,
+        "x": 20,
+        "y": 20
+      },
+      "template": ""
+    },
+    {
+      "type": "search",
+      "order": 3,
+      "options": {
+        "display": true,
+        "x": 60,
+        "y": 20
+      },
+      "template": ""
+    },
+    {
+      "type": "zoom",
+      "order": 6,
+      "options": {
+        "display": true,
+        "x": 20,
+        "y": 20
+      },
+      "template": "<a href=\"#zoom_in\" class=\"zoom_in\">+</a> <a href=\"#zoom_out\" class=\"zoom_out\">-</a>"
+    },
+    {
+      "type": "loader",
+      "order": 8,
+      "options": {
+        "display": true,
+        "x": 20,
+        "y": 150
+      },
+      "template": "<div class=\"loader\" original-title=\"\"></div>"
+    },
+    {
+      "type": "logo",
+      "order": 9,
+      "options": {
+        "display": true,
+        "x": 10,
+        "y": 40
+      },
+      "template": ""
+    }
+  ],
+  "prev": null,
+  "next": null,
+  "transition_options": {
+    "time": 0
+  }
+})
