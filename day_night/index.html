@@ -6,8 +6,10 @@
       html, body, #map {height: 100%; padding: 0; margin: 0;}
       .time .value {visibility: hidden; display: none}
     </style>
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <!-- <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script> -->
+    <link rel="stylesheet" href="../dist/themes/css/cartodb.css" />
+    <script src="../dist/cartodb.uncompressed.js"></script>
     <script src="https://mapzen.com/tangram/0.7/tangram.min.js"></script>
     <script src="moment.min.js"></script>
     <script src="av.color.js"></script>
@@ -60,8 +62,13 @@
                 return;
             }
             var v = getDayNightValue();
-
-            render(v)
+            console.log(currentDayNightValue);
+            console.log(v);
+            // if (v !== currentDayNightValue) {
+              console.log('render')
+              currentDayNightValue = v;
+              render(v);
+            // }
           }
 
           function getDayNightValue() {
@@ -77,6 +84,8 @@
             return v;
           }
 
+          var currentDayNightValue;
+
           function render(v) {
             tangram.scene.config.layers.water.draw.polygons.color = colors.water.gradient.get(v).hex;
             tangram.scene.config.layers.earth.draw.polygons.color = colors.earth.gradient.get(v).hex;
@@ -84,6 +93,7 @@
             tangram.scene.config.layers.roads.draw.lines.color = colors.roads.gradient.get(v).hex;
 
             tangram.scene.animated = true;
+
 
             // tangram.scene.requestRedraw();
             // tangram.scene.updateConfig({ rebuild: true });
@@ -101,7 +111,7 @@
 
           var torque = layers[1];
 
-          torque.setStep(200)
+          torque.setStep(240)
 
           console.log(layers)
           var htmlTime = cartodb.$('<p class="value2"></p>').appendTo('li.time');
