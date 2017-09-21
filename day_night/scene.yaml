@@ -1,0 +1,75 @@
+scene:
+    background:
+        color: [0.850, 0.850, 0.850]
+
+cameras:
+    perspective:
+        type: perspective
+        vanishing_point: [0, -500]
+
+lights:
+    light1:
+        type: directional
+        direction: [.1, .5, -1]
+        diffuse: .7
+        ambient: .5
+
+sources:
+    mapzen:
+        type: TopoJSON
+        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+
+layers:
+    earth:
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 0
+                color: '#555'
+
+    water:
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 2
+                color: '#0B1A2D'
+
+    landuse:
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 1
+                color: '#666'
+
+    roads:
+        data: { source: mapzen }
+        filter: { not: { kind: ferry } }
+        draw:
+            lines:
+                order: 2
+                color: '#777'
+                width: 1px
+    populated-places:
+        data: { source: mapzen, layer: places }
+        filter: { name: true, source: naturalearthdata.com, scalerank: { min: 0, max: 12 } }
+        draw:
+            text:
+               text_source: function() { return feature["name:en"] || feature["name"]; }
+               font:
+                    family: Tahoma
+                    weight: 100
+                    fill: '#000'
+                    stroke: { color: [1,1,1,.8], width: 4 }
+                    size: 14px
+        maincities:
+            filter: { scalerank: { min: 0, max: 5 } }
+            draw:
+                text:
+                    font:
+                        size: 20px
+        mediumcities:
+            filter: { scalerank: { min: 5, max: 7 } }
+            draw:
+                text:
+                    font:
+                        size: 17px

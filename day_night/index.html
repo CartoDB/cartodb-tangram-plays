@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+      html, body, #map {height: 100%; padding: 0; margin: 0;}
+      .time .value {visibility: hidden; display: none}
+    </style>
+    <!-- <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script> -->
+    <link rel="stylesheet" href="../dist/themes/css/cartodb.css" />
+    <script src="../dist/cartodb.uncompressed.js"></script>
+    <script src="https://mapzen.com/tangram/0.7/tangram.min.js"></script>
+    <script src="moment.min.js"></script>
+    <script src="av.color.js"></script>
+
+  </head>
+  <body>
+      <div id="map"></div>
+
+    <script>
+
+      var colors = {
+        water: {night: '#0B1A2D', day:'#97CEFF'},
+        earth: {night:'#555', day:'#ccc'},
+        landuse: {night:'#666', day:'#ddd'},
+        roads: {night:'#777', day:'#eee'},
+      }
+
+      //create gradients
+      Object.keys(colors).forEach(function (feature) {
+        colors[feature].gradient = new Color.Gradient([
+          {
+            stop: 0,
+            color: colors[feature].night
+          },{
+            stop: 1,
+            color: colors[feature].day
+          },
+        ])
+      })
+
+      var numSteps = 2159;
+      var dayStart = 250;
+      var dayEnd = 350;
+      var nightStart = 1300;
+      var nightEnd = 1700;
+
+      var dayDelta = dayEnd - dayStart;
+      var nightDelta = nightEnd - nightStart;
+
+
+      $(document).ready(function(){
+
+        // cartodb.createVis('map', 'https://team.cartodb.com/u/nerikcarto/api/v2/viz/f52d4d1a-0646-11e6-824c-0e3ff518bd15/viz.json', null, function(vis, layers) {
+        // cartodb.createVis('map', 'https://team.cartodb.com/u/stuartlynn/api/v2/viz/7a6be9e0-067f-11e6-b708-0e787de82d45/viz.json', null, function(vis, layers) {
+        cartodb.createVis('map', 'viz.json', null, function(vis, layers) {
+          vis.on('load', function() {})
+
+          function preUpdate(will_render) {
+            if (!will_render) {
+                return;
+            }
+            var v = getDayNightValue();
+            console.log(currentDayNightValue);
+            console.log(v);
+            // if (v !== currentDayNightValue) {
+              console.log('render')
+              currentDayNightValue = v;
+              render(v);
+            // }
+          }
+
+          function getDayNightValue() {
+            var step = torque.getStep();
+            var v = 0;
+            if (step > dayStart && step < dayEnd) {
+              v = (step - dayStart)/dayDelta;
+            } else if (step >= dayEnd && step <= nightStart) {
+              v = 1;
+            } else if (step > nightStart && step < nightEnd) {
+              v = 1 - (step - nightStart)/nightDelta;
+            }
+            return v;
+          }
+
+          var currentDayNightValue;
+
+          function render(v) {
+            tangram.scene.config.layers.water.draw.polygons.color = colors.water.gradient.get(v).hex;
+            tangram.scene.config.layers.earth.draw.polygons.color = colors.earth.gradient.get(v).hex;
+            tangram.scene.config.layers.landuse.draw.polygons.color = colors.landuse.gradient.get(v).hex;
+            tangram.scene.config.layers.roads.draw.lines.color = colors.roads.gradient.get(v).hex;
+
+            tangram.scene.animated = true;
+
+
+            // tangram.scene.requestRedraw();
+            // tangram.scene.updateConfig({ rebuild: true });
+            tangram.scene.rebuildGeometry();
+          }
+
+
+          //Add Tangram basemap layer
+          var tangram = Tangram.leafletLayer({
+              scene: 'day.yaml',
+              attribution: ' &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>',
+              preUpdate: preUpdate,
+          });
+          tangram.addTo(vis.getNativeMap());
+
+          var torque = layers[1];
+
+          torque.setStep(240)
+
+          console.log(layers)
+          var htmlTime = cartodb.$('<p class="value2"></p>').appendTo('li.time');
+
+
+          torque.on('change:time', function() {
+            htmlTime.html(moment(torque.getTime()).format('LT'))
+            // console.log(v)
+
+            // if (step%5 === 0) {
+              // tangram.scene.config.layers.water.draw.polygons.color = colors.water.gradient.get(v).hex;
+              // tangram.scene.config.layers.earth.draw.polygons.color = colors.earth.gradient.get(v).hex;
+              // tangram.scene.config.layers.landuse.draw.polygons.color = colors.landuse.gradient.get(v).hex;
+              // tangram.scene.config.layers.roads.draw.lines.color = colors.roads.gradient.get(v).hex;
+              // tangram.scene.rebuildGeometry();
+            // }
+          })
+        });
+      });
+
+    </script>
+
+  </body>
+</html>
